@@ -107,7 +107,7 @@ int main(int argc, const char * argv[]) {
         sourceAddr.mElement = kAudioObjectPropertyElementMaster;
 
         NSString *output1 = [@"hda-verb 0x12 SET_PIN_WIDGET_CONTROL 0x20" runAsCommand];
-        NSString *output2 = [@"hda-verb 0x19 SET_PIN_WIDGET_CONTROL 0x24" runAsCommand];
+        NSString *output2 = [@"hda-verb 0x19 SET_PIN_WIDGET_CONTROL 0x00" runAsCommand];
 
         AudioObjectAddPropertyListenerBlock(defaultDevice, &sourceAddr, dispatch_get_global_queue (DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(UInt32 inNumberAddresses, const AudioObjectPropertyAddress * inAddresses) {
 
@@ -115,15 +115,15 @@ int main(int argc, const char * argv[]) {
             UInt32 bDataSourceIdSize = sizeof(UInt32);
             AudioObjectGetPropertyData(defaultDevice, inAddresses, 0, NULL, &bDataSourceIdSize, &bDataSourceId);
             if (bDataSourceId == 'ispk') {
-                // Recognized as internal speakers
+                // 被认定为内置扬声器
                 NSLog(@"Headphones removed! Fixing!");
                 NSString *output1 = [@"hda-verb 0x12 SET_PIN_WIDGET_CONTROL 0x20" runAsCommand];
-                NSString *output2 = [@"hda-verb 0x19 SET_PIN_WIDGET_CONTROL 0x24" runAsCommand];
+                NSString *output2 = [@"hda-verb 0x19 SET_PIN_WIDGET_CONTROL 0x00" runAsCommand];
             } else if (bDataSourceId == 'hdpn') {
-                // Recognized as headphones
+                // 被认定为耳机
                 NSLog(@"Headphones inserted! Fixing!");
-                NSString *output1 = [@"hda-verb 0x12 SET_PIN_WIDGET_CONTROL 0x20" runAsCommand];
-                NSString *output2 = [@"hda-verb 0x19 SET_PIN_WIDGET_CONTROL 0x24" runAsCommand];
+                NSString *output1 = [@"hda-verb 0x12 SET_PIN_WIDGET_CONTROL 0x00" runAsCommand];
+                NSString *output2 = [@"hda-verb 0x19 SET_PIN_WIDGET_CONTROL 0x20" runAsCommand];
             }
         });
 

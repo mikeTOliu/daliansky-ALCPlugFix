@@ -13,7 +13,7 @@
     ```
 
 * 打开`ALCPlugFix`目录下面的`main.m`,将包含`hda-verb`语句的几行修改成如图所示
-    ![ALCPlugFix_ALC256](http://ous2s14vo.bkt.clouddn.com/ALCPlugFix_ALC256.png)
+    ![ALCPlugFix_ALC256](http://7.daliansky.net/ALCPlugFix_ALC256.png)
 
 
 * 其中`0x12`是`Mic Int`节点,`0x19`是`Mic Ext`节点,之所以要这么修改,是因为我的`ALC256`的`0x19`节点总是无法工作,在插入耳机的时候我希望内置的`Mic Int`可以工作的同时还可以使用耳机.
