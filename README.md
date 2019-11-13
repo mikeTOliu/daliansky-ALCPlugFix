@@ -1,5 +1,8 @@
 # ALCPlugFix
 ## ALCPlugFix能做什么?
+----
+#  已修改完毕且适用于latitude7370，clone后无需修改直接执行alc_fix下的install即可 
+
 * 它可以解决耳机插拔状态的切换
 * 它是通过使用命令:`hda-verb 0xNode SET_PIN_WIDGET_CONTROL 0xVerbs`的方式进行状态切换
     * `hda-verb`的由来
